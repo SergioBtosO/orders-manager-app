@@ -1,6 +1,6 @@
 # orders-manager-app
 Proyecto curso python coderhouse
 
-autores:
-juan echeverry fernandez
-sergio barrientos ossa
+Autores:
+Juan Echeverry Fernandez
+Sergio Barrientos Ossa
