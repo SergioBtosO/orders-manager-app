@@ -2,5 +2,5 @@
 Proyecto curso python coderhouse
 
 Autores:
-Juan Echeverry Fernandez
+Juan  David Echeverry Fernandez
 Sergio Barrientos Ossa
