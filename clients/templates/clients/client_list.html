@@ -1,0 +1,17 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+
+{% block orders_manager_content %}
+
+{% for client in clients %}
+    <!-- Post preview-->
+    <div class="card-body">
+        <h2>El nombre del cliente  {{ client.name }}</h2>
+        <h3>id: {{ client.id }}</h3>
+    </div>
+    <!-- Divider-->
+    <hr/>
+{% endfor %}
+
+{% endblock %}
