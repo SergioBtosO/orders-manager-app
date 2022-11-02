@@ -94,7 +94,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Maestros</h6>
                         <a class="collapse-item" href="#">Clientes</a>
-                        <a class="collapse-item" href="#">Vendedores</a>
+                        <a class="collapse-item" href="{% url 'vendors:vendor-list' %}">Vendedores</a>
                         <a class="collapse-item" href="#">Productos</a>
                     </div>
                 </div>
@@ -172,17 +172,11 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    </div>
-
-                    <div class="col-lg6 mb-4">
-                        {% block after_content %}
+                   
+                    {% block orders_manager_content %}
                         
-                        {% endblock %}
-                    </div>
+
+                    {% endblock %}
 
                 </div>
                 <!-- /.container-fluid -->
