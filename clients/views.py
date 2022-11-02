@@ -4,20 +4,15 @@ from django.shortcuts import render
 from clients.models import Client
 from clients.forms import ClientForm
 
-
-# Create your views here.
-def get_clients(request):
-    clients = Client.objects.all()
-    return clients
-
 def clients(request):
     clients = Client.objects.all()
-    context_dict= {"clients":clients}
+    context_dict = {"clients": clients}
     return render(
-        request=request,
-        context=context_dict,
-        template_name="clients/client_list.html",
+        request, 'client_list.html',
+        context_dict,
+
     )
+
 
 def create_client(request):
     if request.method == "POST":
@@ -34,25 +29,19 @@ def create_client(request):
                     f"El cliente {data['name']} - {data['nit']} ya existe",
                 )
             else:
-                client = Client(name=data["name"], id=data["nit"])
+                client = Client(name=data["name"], nit=data["nit"],phone=data['phone'], email=data['email'], address=data['address'],)
                 client.save()
                 messages.success(
                     request,
                     f"cliente {data['name']} - {data['nit']} creado exitosamente!",
                 )
 
+            clients = Client.objects.all()
+            context_dict = {"clients": clients}
             return render(
-                request=request,
-                context={"clients": Client.objects.all()},
-                template_name="clients/clients_list.html",
-            )
+                request, 'client_list.html',
+                context_dict,)
 
-    client_form = ClientForm(request.POST)
-    context_dict = {"form": client_form}
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="clients/clients_form.html",
-    )
-
-
+    return render(request, 'client_form.html', {
+        'form': ClientForm
+    })
