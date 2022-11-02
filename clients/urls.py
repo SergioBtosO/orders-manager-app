@@ -4,6 +4,6 @@ from clients import views
 
 app_name = 'clients'
 urlpatterns = [
-    path('', view=views.clients, name='client_list'),
-    path('client/add', view=views.create_clients, name='client_add'),
+    path('clients/', view=views.clients, name='client_list'),
+    path('client/add', view=views.create_client, name='client_add'),
 ]

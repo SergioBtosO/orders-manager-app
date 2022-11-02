@@ -3,12 +3,21 @@
 
 
 {% block orders_manager_content %}
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Clientes</h1>
+    <a href="{% url 'clients:client-add' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-download fa-sm text-white-50"></i> Nuevo cliente </a>
+</div>
+
+<div class="col-lg6 mb-4">
+</div>
 
 {% for client in clients %}
     <!-- Post preview-->
     <div class="card-body">
         <h2>El nombre del cliente  {{ client.name }}</h2>
-        <h3>id: {{ client.id }}</h3>
+        <h3>Nit: {{ client.nit }}</h3>
     </div>
     <!-- Divider-->
     <hr/>
