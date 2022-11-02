@@ -1,0 +1,21 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+
+{% block orders_manager_content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Productos</h1>
+    <a href="{% url 'products:product-add' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-download fa-sm text-white-50"></i> Nuevo producto </a>
+</div>
+{% for product in products %}
+    <!-- Post preview-->
+    <div class="card-body">
+        <h2>El nombre del producto  {{ product.name }}</h2>
+        <h3>ref: {{ product.ref }}</h3>
+    </div>
+    <!-- Divider-->
+    <hr/>
+{% endfor %}
+
+{% endblock %}

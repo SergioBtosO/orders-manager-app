@@ -1,50 +1,45 @@
 from django.contrib import messages
-from itertools import product
 from django.shortcuts import render
 
 from products.models import Product
 from products.forms import ProductForm
 
 # Create your views here.
+
+
 def create_products(request):
     if request.method == "POST":
         product_form = ProductForm(request.POST)
-        print("-------------------------------------+++++++++++++++++")
         if product_form.is_valid():
             data = product_form.cleaned_data
             actual_objects = Product.objects.filter(
-                name=data["name"], id=data["id"]
+                name=data["name"], ref=data["ref"]
             ).count()
             print("actual_objects", actual_objects)
             if actual_objects:
                 messages.error(
                     request,
-                    f"El producto {data['name']} - {data['id']} ya existe",
+                    f"El producto {data['name']} - {data['ref']} ya existe",
                 )
             else:
-                product = Product(name=data["name"], id=data["id"])
+                product = Product(name=data["name"],  ref=data["ref"], description=data["description"], price=data["price"], weight=data["weight"],
+                size=data["size"], colors=data["colors"],)
                 product.save()
                 messages.success(
                     request,
-                    f"producto {data['name']} - {data['id']} creado exitosamente!",
+                    f"producto {data['name']} - {data['ref']} creado exitosamente!",
                 )
 
+            products = Product.objects.all()
+            context_dict = {"products": products}
             return render(
-                request=request,
-                context={"products": Product.objects.all()},
-                template_name="products/products_list.html",
-            )
+                request, 'product_list.html',
+                context_dict,)
 
-    product_form = ProductForm(request.POST)
-    context_dict = {"form": product_form}
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="products/products_form.html",
-    )
+    return render(request, 'product_form.html', {
+        'form': ProductForm
+    })
+
 def products(request):
-    return render(
-        request=request,
-        context={"products": Product.objects.all()},
-        template_name="product/product_list.html",
-    )
+    products = Product.objects.all()
+    return render(request, "product_list.html", {'products': products})
